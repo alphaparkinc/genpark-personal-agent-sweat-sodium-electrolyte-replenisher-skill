@@ -1,0 +1,70 @@
+{
+  "name": "genpark-personal-agent-sweat-sodium-electrolyte-replenisher-skill",
+  "version": "1.0.0",
+  "title": "Sweat Rate & Sodium Electrolyte Dynamic Replenisher Skill",
+  "description": "Sodium loss rate from sweat rate and ambient wet-bulb globe temperature (WBGT), hypotonic vs isotonic electrolyte formulation, and osmolality target. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "personal-agent",
+  "topics": [
+    "sweat-rate",
+    "electrolytes",
+    "hydration",
+    "endurance-fueling",
+    "personal-agent",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "calculate_sweat_fluid_electrolyte_deficit",
+      "description": "Calculate sweat fluid loss rate (L/hr) and total sodium deficit from pre/post bodyweight change.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pre_exercise_weight_kg": {
+            "type": "number"
+          },
+          "post_exercise_weight_kg": {
+            "type": "number"
+          },
+          "fluid_consumed_ml": {
+            "type": "number"
+          },
+          "duration_minutes": {
+            "type": "number"
+          },
+          "ambient_temp_c": {
+            "type": "number"
+          },
+          "relative_humidity_pct": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "pre_exercise_weight_kg",
+          "post_exercise_weight_kg",
+          "duration_minutes"
+        ]
+      }
+    },
+    {
+      "name": "formulate_hypotonic_electrolyte_dosing",
+      "description": "Formulate targeted hypotonic drink mix (sodium, potassium, magnesium) to optimize gastric emptying rate.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sodium_loss_mg": {
+            "type": "number"
+          },
+          "remaining_duration_hours": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "sodium_loss_mg"
+        ]
+      }
+    }
+  ]
+}
